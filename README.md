@@ -6,7 +6,7 @@ This project was written in Python and Psql, the final result is a report from t
 
 # How to use
     1 - Download the project
-    2 - You'll need the Virtual Machine from past lessons
+    2 - You'll need the Virtual Machine from past lessons (You can download the Vagrant from this link https://www.vagrantup.com/downloads.html)
     3 - Put the files inside the vagrant directory
     4 - How to access the VM
         4.1 - Open the git bash on the directory where you install the VM

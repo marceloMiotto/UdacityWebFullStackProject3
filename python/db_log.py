@@ -9,7 +9,7 @@ class Data_Log():
         results = self.cursor.fetchall()
         print "Title     ->     Views"
         for title, qtd_views in results:
-            print title + " -> " + qtd_views
+            print title + " -> " + str(qtd_views)
         print " "
         print "------------------------------------------------------------"
 
@@ -18,7 +18,7 @@ class Data_Log():
         results = self.cursor.fetchall()
         print "Name     ->     Views"
         for name, qtd_views in results:
-            print name + " -> " + qtd_views
+            print name + " -> " + str(qtd_views)
         print " "
         print "------------------------------------------------------------"
 

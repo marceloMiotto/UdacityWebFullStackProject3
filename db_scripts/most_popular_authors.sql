@@ -1,6 +1,6 @@
 CREATE OR REPLACE VIEW MOST_POPULAR_AUTHORS_V AS
-SELECT au.name                         AS NAME
-      ,to_char(count(*),'99999999990') AS QTD_VIEWS
+SELECT au.name       AS NAME
+      ,count(*)      AS QTD_VIEWS
   FROM authors  au
       ,articles ar
       ,log      lo
