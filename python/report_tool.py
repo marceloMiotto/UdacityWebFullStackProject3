@@ -12,7 +12,7 @@ def connect(database_name):
     except psycopg2.Error as e:
         # THEN you could print an error
         # and perhaps exit the program
-        print (\"Unable to connect to database\")
+        print "Unable to connect to database"
         sys.exit(1)
 
 
