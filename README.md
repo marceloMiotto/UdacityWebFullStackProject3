@@ -15,25 +15,26 @@ This project was written in Python and Psql, the final result is a report from t
     5 - Create 3 views for this project
         5.1 - The view with the most popular articles
               CREATE OR REPLACE VIEW MOST_POPULAR_ARTICLES_V AS
-                 SELECT a.title                   AS TITLE
-                       ,to_char(count(*),'99990') AS QTD_VIEWS
-                   FROM articles a
-                       ,log      l
-                  WHERE a.slug = SUBSTR(l.path,10)
-                  GROUP BY a.title 
-                  ORDER BY 2 DESC;
+                  SELECT a.title  AS TITLE
+                        ,count(*) AS QTD_VIEWS
+                    FROM articles a
+                        ,log      l
+                   WHERE a.slug = SUBSTR(l.path,10)
+                   GROUP BY a.title 
+                   ORDER BY 2 DESC;
+  
 
         5.2 - The view with the most popular authors
               CREATE OR REPLACE VIEW MOST_POPULAR_AUTHORS_V AS
-                 SELECT au.name                         AS NAME
-                       ,to_char(count(*),'99999999990') AS QTD_VIEWS
-                   FROM authors  au
-                       ,articles ar
-                       ,log      lo
-                  WHERE au.id   = ar.author
-                    AND ar.slug = SUBSTR(lo.path,10)
-                  GROUP BY au.name
-                  ORDER BY 2 DESC;
+                  SELECT au.name       AS NAME
+                        ,count(*)      AS QTD_VIEWS
+                    FROM authors  au
+                        ,articles ar
+                        ,log      lo
+                   WHERE au.id   = ar.author
+                     AND ar.slug = SUBSTR(lo.path,10)
+                   GROUP BY au.name
+                   ORDER BY 2 DESC;
 
         5.3 - The view with the days and the percentual errors
               CREATE OR REPLACE VIEW REQ_ERRORS_BY_DAY_V AS
@@ -43,13 +44,13 @@ This project was written in Python and Psql, the final result is a report from t
                                ,COUNT(*)  AS total
                            FROM log lo
                           GROUP BY DATE(time)
-		                ) a 
-	                   ,(SELECT DATE(time) AS date_error 
+                        ) a 
+                       ,(SELECT DATE(time) AS date_error 
                                ,COUNT(*)  AS total_errors
                            FROM log
                           WHERE status     = '404 NOT FOUND'           
                           GROUP BY DATE(time)
-		                ) b		
+                        ) b
                   WHERE a.date_total = b.date_error
 
     6 - Execute the "report_tool.py" file from python directory. (eg. python report_tool)
